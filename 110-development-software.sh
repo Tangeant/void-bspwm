@@ -54,6 +54,7 @@ xfce4-screenshooter
 scrot
 vpm
 file-roller
+yadm
 )
 
 count=0
