@@ -4,11 +4,8 @@
 # Author	:	Erik Dubois
 # Website	:	https://www.erikdubois.be
 # Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
+# Modified by : Chris Terrio
+# Email : cterrio@gmail.com
 ###############################################################################
 #
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
@@ -24,7 +21,7 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if xbps-query $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -38,7 +35,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1
+    	sudo xbps-install -vy $1
     fi
 }
 
@@ -72,7 +69,7 @@ func_category Development
 list=(
 atom
 meld
-sublime-text-dev
+geany
 )
 
 count=0
@@ -89,7 +86,7 @@ func_category Graphics
 list=(
 gimp
 inkscape
-nomacs
+sxiv
 )
 
 count=0
@@ -104,8 +101,11 @@ done
 func_category Internet
 
 list=(
-chromium
+qutebrowser
+surf
 qbittorrent
+w3m
+surfraw
 )
 
 count=0
@@ -121,6 +121,12 @@ func_category Multimedia
 
 list=(
 vlc
+mpd
+ncmpcpp
+mpv
+spotify
+spotify-tui
+spotifyd
 )
 
 count=0
@@ -135,7 +141,8 @@ done
 func_category Office
 
 list=(
-evince
+zathura
+viewnior
 )
 
 count=0
@@ -150,8 +157,11 @@ done
 func_category System
 
 list=(
-dconf-editor
-arc-gtk-theme
+arc-theme
+papirus-icon-theme
+tabbed
+oomox
+breeze-cursors
 )
 
 count=0
@@ -166,12 +176,10 @@ done
 func_category Unpack
 
 list=(
-unace
-unrar
+p7zip-unrar
 zip
 unzip
 sharutils
-uudeview
 arj
 cabextract
 file-roller

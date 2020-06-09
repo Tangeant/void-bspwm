@@ -4,11 +4,8 @@
 # Author	:	Erik Dubois
 # Website	:	https://www.erikdubois.be
 # Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
+# Modified by : Chris Terrio
+# Email : cterrio@gmail.com
 ###############################################################################
 #
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
@@ -24,7 +21,7 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if xbps-query $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -38,7 +35,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1
+    	sudo xbps-install -vy $1
     fi
 }
 
@@ -66,19 +63,26 @@ lxrandr
 nitrogen
 picom
 playerctl
-python-pywal
+pywal
 volumeicon
 w3m
-urxvt-resize-font-git
 xfce4-appfinder
 xfce4-notifyd
 xfce4-power-manager
 xfce4-screenshooter
 xfce4-settings
-xfce4-screenshooter
 xfce4-taskmanager
 xfce4-terminal
-hardcode-fixer-git
+skippy-xd
+pcmanfm
+neomutt
+catfish
+youtube-dl
+irssi
+newsboat
+oblogout
+i3lock
+slop
 )
 
 count=0
@@ -87,13 +91,17 @@ for name in "${list[@]}" ; do
 	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
 	func_install $name
 done
-echo "Fixing hardcoded icon paths for applications - Wait for it"
-sudo hardcode-fixer
-
+###############################################################################
+tput setaf 6;echo "################################################################"
+echo "Copying Dotfiles from Config"
+echo "################################################################"
+echo;tput sgr0
+chmod +x $HOME/.dotfiles/config/configbootstrap && bash $HOME/.dotfiles/config/configbootstrap
 ###############################################################################
 
 tput setaf 11;
 echo "################################################################"
-echo "Software has been installed"
+echo "Software Installed"
 echo "################################################################"
+
 echo;tput sgr0

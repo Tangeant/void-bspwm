@@ -1,14 +1,10 @@
 #!/bin/bash
 #set -e
 ###############################################################################
-# Author	:	Erik Dubois
+# Original Author	:	Erik Dubois
 # Website	:	https://www.erikdubois.be
-# Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
+# Modified by : Chris Terrio
+# Email : cterrio@gmail.com
 ###############################################################################
 #
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
@@ -24,7 +20,7 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if xbps-query $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -38,39 +34,61 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1
+    	sudo xbps-install -vy $1
     fi
 }
+
+###############################################################################
+echo "Updating System"
+###############################################################################
+
+sudo xbps-install -yv void-repo-nonfree
+sudo xbps-install -Suv
 
 ###############################################################################
 echo "Installation of the core software"
 ###############################################################################
 
 list=(
-lightdm
-arcolinux-lightdm-gtk-greeter
-arcolinux-lightdm-gtk-greeter-settings
-arcolinux-wallpapers-git
+xorg
+zsh
+antibody
+slim
+slim-void-theme
+dbus
 thunar
 thunar-archive-plugin
 thunar-volman
-xfce4-terminal
-arcolinux-xfce-git
-arcolinux-local-xfce4-git
+alacritty
+rxvt-unicode
+urxvt-perls
 bspwm
 sxhkd
 dmenu
+rofi
 xdo
+xrdb
+xsel
+xset
+neovim
 feh
-sutils-git
-xtitle-git
-arcolinux-bspwm-git
-arcolinux-bspwm-dconf-git
-arcolinux-config-bspwm-git
-awesome-terminal-fonts
+dunst
+picom
+sutils
+xtitle
+font-awesome5
+font-iosevka
+xsettingsd
 polybar
-arcolinux-polybar-git
-arcolinux-logout-git
+tmux
+xrandr
+arandr
+skippy-xd
+nnn
+ranger
+ConsoleKit2
+ffmpeg
+ntfs-3g
 )
 
 count=0
@@ -84,16 +102,22 @@ done
 ###############################################################################
 
 tput setaf 6;echo "################################################################"
-echo "Copying all files and folders from /etc/skel to ~"
+echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
-cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~
+chmod +x $HOME/.dotfiles/bootstrap && bash $HOME/.dotfiles/bootstrap
+ln -s $HOME/.dotfiles/config/bspwm.symlink $HOME/.config/bspwm
+ln-s $HOME/.dotfiles/config/sxhkd.symlink $HOME/.config/sxhkd
+ln -s $HOME/.dotfiles/config/nvim.symlink $HOME/.config/nvim
+ln -s $HOME/.dotfiles/config/picom.conf.symlink $HOME/.config/picom.conf
+ln -s $HOME/.dotfiles/config/dunst.symlink $HOME/.config/dunst
 
 tput setaf 5;echo "################################################################"
-echo "Enabling lightdm as display manager"
+echo "Enabling slim as display manager"
 echo "################################################################"
 echo;tput sgr0
-sudo systemctl enable lightdm.service -f
+sudo ln -s /etc/sv/dbus /var/service/dbus
+sudo ln -s /etc/sv/slim /var/service/slim
 
 tput setaf 7;echo "################################################################"
 echo "You now have a very minimal functional desktop"

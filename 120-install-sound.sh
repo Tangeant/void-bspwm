@@ -4,11 +4,8 @@
 # Author	:	Erik Dubois
 # Website	:	https://www.erikdubois.be
 # Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
+# Modified by : Chris Terrio
+# Email : cterrio@gmail.com
 ###############################################################################
 #
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
@@ -24,7 +21,7 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if xbps-query $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -38,7 +35,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1 
+    	sudo xbps-install -vy $1
     fi
 }
 
@@ -48,17 +45,18 @@ echo "Installation of sound software"
 
 list=(
 pulseaudio
-pulseaudio-alsa
+alsa-plugins-pulseaudio
 pavucontrol
 alsa-firmware
 alsa-lib
 alsa-plugins
 alsa-utils
-gstreamer
-gst-plugins-good
-gst-plugins-bad
-gst-plugins-base
-gst-plugins-ugly
+also-plugins-ffmpeg
+gstreamer1
+gst-plugins-good1
+gst-plugins-bad1
+gst-plugins-base1
+gst-plugins-ugly1
 playerctl
 volumeicon
 )
