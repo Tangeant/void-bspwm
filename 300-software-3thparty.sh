@@ -82,7 +82,6 @@ done
 func_category System
 
 list=(
-
 inxi
 neofetch
 vpm

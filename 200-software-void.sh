@@ -87,6 +87,7 @@ list=(
 gimp
 inkscape
 sxiv
+w3m-img
 )
 
 count=0
@@ -162,6 +163,12 @@ papirus-icon-theme
 tabbed
 oomox
 breeze-cursors
+pass
+passmenu
+pass-git-helper
+pass-import
+pass-otp
+pass-update
 )
 
 count=0

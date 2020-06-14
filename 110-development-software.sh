@@ -47,6 +47,7 @@ firefox
 geany
 atom
 micro
+kakoune
 flameshot
 meld
 telegram-desktop

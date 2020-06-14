@@ -53,8 +53,9 @@ list=(
 xorg
 zsh
 antibody
-slim
-slim-void-theme
+lightdm
+lightdm-gtk3-greeter
+lightdm-gtk-greeter-settings
 dbus
 thunar
 thunar-archive-plugin
@@ -81,10 +82,12 @@ font-iosevka
 xsettingsd
 polybar
 tmux
+#byobu
 xrandr
 arandr
 skippy-xd
 nnn
+fff
 ranger
 ConsoleKit2
 ffmpeg
@@ -113,11 +116,11 @@ ln -s $HOME/.dotfiles/config/picom.conf.symlink $HOME/.config/picom.conf
 ln -s $HOME/.dotfiles/config/dunst.symlink $HOME/.config/dunst
 
 tput setaf 5;echo "################################################################"
-echo "Enabling slim as display manager"
+echo "Enabling lightdm as display manager"
 echo "################################################################"
 echo;tput sgr0
 sudo ln -s /etc/sv/dbus /var/service/dbus
-sudo ln -s /etc/sv/slim /var/service/slim
+sudo ln -s /etc/sv/lightdm /var/service/lightdm
 
 tput setaf 7;echo "################################################################"
 echo "You now have a very minimal functional desktop"
