@@ -92,6 +92,7 @@ ranger
 ConsoleKit2
 ffmpeg
 ntfs-3g
+i3lock
 )
 
 count=0
