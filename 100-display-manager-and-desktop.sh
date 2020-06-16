@@ -67,6 +67,8 @@ bspwm
 sxhkd
 dmenu
 rofi
+htop
+lsof
 xdo
 xrdb
 xsel
@@ -93,6 +95,7 @@ ConsoleKit2
 ffmpeg
 ntfs-3g
 i3lock
+yadm
 )
 
 count=0
@@ -109,12 +112,11 @@ tput setaf 6;echo "#############################################################
 echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
-chmod +x $HOME/.dotfiles/bootstrap && bash $HOME/.dotfiles/bootstrap
-ln -s $HOME/.dotfiles/config/bspwm.symlink $HOME/.config/bspwm
-ln-s $HOME/.dotfiles/config/sxhkd.symlink $HOME/.config/sxhkd
-ln -s $HOME/.dotfiles/config/nvim.symlink $HOME/.config/nvim
-ln -s $HOME/.dotfiles/config/picom.conf.symlink $HOME/.config/picom.conf
-ln -s $HOME/.dotfiles/config/dunst.symlink $HOME/.config/dunst
+yadm init
+yadm remote add dotfile https://github.com/Tangeant/dotfiles
+yadm pull
+chmod +x $XDG_CONFIG_HOME/bspwm/autostart
+chmod +x $XDG_CONFIG_HOME/bspwm/bspwmrc
 
 tput setaf 5;echo "################################################################"
 echo "Enabling lightdm as display manager"
