@@ -4,7 +4,7 @@
 # Original Author	:	Erik Dubois
 # Website	:	https://www.erikdubois.be
 # Modified by : Chris Terrio
-# Email : cterrio@gmail.com
+# Email : cterrio@posteo.net
 ###############################################################################
 #
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
@@ -24,8 +24,8 @@ func_install() {
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
-      	echo "###############################################################################"
-      	echo
+      echo "###############################################################################"
+      echo
 		tput sgr0
 	else
     	tput setaf 3
@@ -112,11 +112,7 @@ tput setaf 6;echo "#############################################################
 echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
-yadm init
-yadm remote add dotfile https://github.com/Tangeant/dotfiles
-yadm pull
-chmod +x $XDG_CONFIG_HOME/bspwm/autostart
-chmod +x $XDG_CONFIG_HOME/bspwm/bspwmrc
+yadm clone --bootstrap https://github.com/Tangeant/dotfiles
 
 tput setaf 5;echo "################################################################"
 echo "Enabling lightdm as display manager"
