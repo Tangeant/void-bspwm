@@ -122,6 +122,7 @@ echo "################################################################"
 echo;tput sgr0
 yadm clone https://github.com/Tangeant/dotfiles
 chmod +x "$HOME/.config/yadm/bootstrap"
+yadm bootstrap
 chsh -s /bin/zsh && source ~/.zshrc
 antibody update
 
