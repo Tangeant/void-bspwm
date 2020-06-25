@@ -121,8 +121,11 @@ tput setaf 6;echo "#############################################################
 echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
-yadm clone --bootstrap https://github.com/Tangeant/dotfiles
+yadm clone https://github.com/Tangeant/dotfiles
+chmod +x "$HOME/.config/yadm/bootstrap"
+yadm bootstrap
 chsh -s /bin/zsh && source ~/.zshrc
+antibody update
 
 tput setaf 5;echo "################################################################"
 echo "Enabling lightdm as display manager"
