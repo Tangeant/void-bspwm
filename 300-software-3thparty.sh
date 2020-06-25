@@ -36,14 +36,15 @@ func_install() {
     	echo
     	tput sgr0
     	sudo xbps-install -vy $1
-		else
+	else
 			tput setaf 3
 			echo "###############################################################################"
-    	echo "##################  Installing package "  $1
+    	echo "##################  Installing package from source"  $1
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo xbps-src pkg $1
+        cd "$HOME/void-packages"
+    	./xbps-src pkg $1
 			sudo xbps-install -vy --repository hostdir/binpkgs $1
 		fi
 }
