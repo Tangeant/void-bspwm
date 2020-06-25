@@ -121,6 +121,7 @@ echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
 yadm clone --bootstrap https://github.com/Tangeant/dotfiles
+chsh -s /bin/zsh && source ~/.zshrc
 
 tput setaf 5;echo "################################################################"
 echo "Enabling lightdm as display manager"
