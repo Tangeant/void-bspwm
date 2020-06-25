@@ -42,6 +42,11 @@ func_install() {
 echo "Updating System"
 ###############################################################################
 
+cd $HOME
+git clone git://github.com/void-linux/void-packages.git
+cd void-packages
+./xbps-src binary-bootstrap
+./xbps-src bootstrap-update
 sudo xbps-install -yv void-repo-nonfree
 sudo xbps-install -Suv
 
@@ -50,6 +55,7 @@ echo "Installation of the core software"
 ###############################################################################
 
 list=(
+rsync
 xorg
 zsh
 antibody
@@ -63,6 +69,7 @@ thunar-volman
 alacritty
 rxvt-unicode
 urxvt-perls
+kitty
 bspwm
 sxhkd
 dmenu
@@ -78,6 +85,7 @@ feh
 dunst
 picom
 sutils
+xtools
 xtitle
 font-awesome5
 font-iosevka
@@ -94,7 +102,7 @@ ranger
 ConsoleKit2
 ffmpeg
 ntfs-3g
-i3lock
+betterlockscreen
 yadm
 )
 

@@ -45,6 +45,7 @@ func_category() {
 	echo "Installing software for category " $1
 	echo "################################################################"
 	echo;tput sgr0
+	sudo xbps-src
 }
 
 ###############################################################################
@@ -103,7 +104,6 @@ func_category Internet
 
 list=(
 qutebrowser
-surf
 qbittorrent
 w3m
 surfraw
