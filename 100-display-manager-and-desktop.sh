@@ -80,6 +80,7 @@ xdo
 xrdb
 xsel
 xset
+xz
 neovim
 feh
 dunst
