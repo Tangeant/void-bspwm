@@ -169,6 +169,8 @@ pass-git-helper
 pass-import
 pass-otp
 pass-update
+timeshift
+redshift
 )
 
 count=0
