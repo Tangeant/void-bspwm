@@ -72,6 +72,11 @@ urxvt-perls
 kitty
 bspwm
 sxhkd
+tint2
+jgmenu
+openbox
+obconf
+obmenu-generator
 dmenu
 rofi
 htop
