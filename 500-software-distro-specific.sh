@@ -78,7 +78,7 @@ pcmanfm
 neomutt
 catfish
 youtube-dl
-irssi
+weechat
 newsboat
 oblogout
 i3lock

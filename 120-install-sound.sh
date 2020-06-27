@@ -51,7 +51,7 @@ alsa-firmware
 alsa-lib
 alsa-plugins
 alsa-utils
-also-plugins-ffmpeg
+alsa-plugins-ffmpeg
 gstreamer1
 gst-plugins-good1
 gst-plugins-bad1
