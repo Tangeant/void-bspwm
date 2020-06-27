@@ -102,6 +102,7 @@ done
 func_category System
 
 list=(
+obmenu-generator
 picom-ibhagwan-git
 inxi
 ttf-iosevka
