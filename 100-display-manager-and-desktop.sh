@@ -78,6 +78,7 @@ termite
 bspwm
 sxhkd
 openbox
+tint2
 obconf
 dmenu
 rofi
