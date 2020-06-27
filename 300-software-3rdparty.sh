@@ -21,22 +21,22 @@
 
 
 func_install() {
-	if xbps-query $1 &> /dev/null; then
+	if pacman -Qi $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
-      	echo "###############################################################################"
-      	echo
+      echo "###############################################################################"
+      echo
 		tput sgr0
 	else
-    	tput setaf 3
-    	echo "###############################################################################"
-    	echo "##################  Installing package "  $1
+			tput setaf 3
+			echo "###############################################################################"
+    	echo "##################  Installing package from AUR"  $1
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo xbps-install -vy $1
-    fi
+			sudo yay -S $1
+		fi
 }
 
 func_category() {
@@ -45,7 +45,6 @@ func_category() {
 	echo "Installing software for category " $1
 	echo "################################################################"
 	echo;tput sgr0
-	sudo xbps-src
 }
 
 ###############################################################################
@@ -53,60 +52,6 @@ func_category() {
 func_category Accessories
 
 list=(
-variety
-)
-
-count=0
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
-
-###############################################################################
-
-func_category Development
-
-list=(
-atom
-meld
-geany
-)
-
-count=0
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
-
-###############################################################################
-
-func_category Graphics
-
-list=(
-gimp
-inkscape
-sxiv
-w3m-img
-)
-
-count=0
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
-
-###############################################################################
-
-func_category Internet
-
-list=(
-qutebrowser
-qbittorrent
-w3m
-surfraw
 )
 
 count=0
@@ -121,16 +66,13 @@ done
 func_category Multimedia
 
 list=(
-vlc
-mpd
-ncmpcpp
-mpv
 spotify
 spotify-tui
-spotifyd
+spotifyd-pulseaudio
 )
 
 count=0
+
 for name in "${list[@]}" ; do
 	count=$[count+1]
 	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
@@ -139,14 +81,16 @@ done
 
 ###############################################################################
 
-func_category Office
+func_category Internet
 
 list=(
-zathura
-viewnior
+vivaldi
+vivaldi-codec-ffmpeg-extra-bin
+telegram-cli-git
 )
 
 count=0
+
 for name in "${list[@]}" ; do
 	count=$[count+1]
 	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
@@ -158,38 +102,19 @@ done
 func_category System
 
 list=(
-arc-theme
-papirus-icon-theme
-tabbed
+picom-ibhagwan-git
+inxi
+ttf-iosevka
+xtitle
+skippy-xd-git
+betterlockscreen
 oomox
-breeze-cursors
-pass
-passmenu
-pass-git-helper
+oblogout
+polybar
+timeshift
 pass-import
-pass-otp
 pass-update
-)
-
-count=0
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
-
-###############################################################################
-
-func_category Unpack
-
-list=(
-p7zip-unrar
-zip
-unzip
-sharutils
-arj
-cabextract
-file-roller
+pass-git-helper
 )
 
 count=0

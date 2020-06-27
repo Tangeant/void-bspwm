@@ -20,7 +20,7 @@
 
 
 func_install() {
-	if xbps-query $1 &> /dev/null; then
+	if pacman -Qi $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -34,7 +34,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo xbps-install -vy $1
+    	sudo pacman -S --needed --noconfirm $1
     fi
 }
 
@@ -51,20 +51,23 @@ func_category() {
 func_category Fonts
 
 list=(
-font-awesome5
-font-adobe-source-code-pro
+ttf-font-awesome
+adobe-source-code-pro-fonts
 cantarell-fonts
-noto-fonts-ttf
+noto-fonts
 ttf-bitstream-vera
-font-fira-ttf
-dejavu-fonts-ttf
-fonts-droid-ttf
-font-hack-ttf
-font-inconsolata-otf
-liberation-fonts-ttf
-fonts-roboto-ttf
+ttf-fira-sans
+ttf-fira-mono
+ttf-fire-code
+ttf-dejavu
+ttf-droid
+ttf-hack
+ttf-inconsolata
+ttf-liberation
+ttf-roboto
+ttf-roboto-mono
 ttf-ubuntu-font-family
-font-tamsyn
+tamsyn-font
 )
 
 count=0

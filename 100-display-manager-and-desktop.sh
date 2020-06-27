@@ -20,7 +20,7 @@
 
 
 func_install() {
-	if xbps-query $1 &> /dev/null; then
+	if pacman -Qi $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -34,7 +34,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo xbps-install -vy $1
+    	sudo pacman -S --needed --noconfirm $1
     fi
 }
 
@@ -42,13 +42,18 @@ func_install() {
 echo "Updating System"
 ###############################################################################
 
-cd $HOME
-git clone git://github.com/void-linux/void-packages.git
-cd void-packages
-./xbps-src binary-bootstrap
-./xbps-src bootstrap-update
-sudo xbps-install -yv void-repo-nonfree
-sudo xbps-install -Suv
+eos-rankmirrors
+sudo pacman -S --needed --noconfirm reflector-auto
+
+if [ ! -f /etc/reflector-auto.conf ]
+	then
+		touch /etc/reflector-auto.conf
+fi
+sudo echo "-c Canada -c United States -f 10 -p https -a 2" >> /etc/reflector-auto.conf
+sudo systemctl start reflector-auto.timer
+sudo systemctl enable reflector-auto.timer
+
+sudo pacman -Syyu
 
 ###############################################################################
 echo "Installation of the core software"
@@ -62,7 +67,6 @@ antibody
 lightdm
 lightdm-gtk3-greeter
 lightdm-gtk-greeter-settings
-dbus
 thunar
 thunar-archive-plugin
 thunar-volman
@@ -70,41 +74,33 @@ alacritty
 rxvt-unicode
 urxvt-perls
 kitty
+termite
 bspwm
 sxhkd
+openbox
+obconf
 dmenu
 rofi
 htop
 lsof
 xdo
-xrdb
 xsel
-xset
+xorg-xset
 xz
 neovim
 feh
 dunst
-picom
-sutils
-xtools
-xtitle
-font-awesome5
-font-iosevka
+ttf-font-awesome
 xsettingsd
-polybar
 tmux
 #byobu
 xrandr
 arandr
-skippy-xd
 nnn
 fff
 ranger
-ConsoleKit2
-ffmpeg
 ntfs-3g
-betterlockscreen
-yadm
+yay
 )
 
 count=0
@@ -121,21 +117,27 @@ tput setaf 6;echo "#############################################################
 echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
+sudo yay -S yadm
 yadm clone https://github.com/Tangeant/dotfiles
 chmod +x "$HOME/.config/yadm/bootstrap"
 yadm bootstrap
 chsh -s /bin/zsh && source ~/.zshrc
 antibody update
 
-tput setaf 5;echo "################################################################"
-echo "Enabling lightdm as display manager"
-echo "################################################################"
-echo;tput sgr0
-sudo ln -s /etc/sv/dbus /var/service/dbus
-sudo ln -s /etc/sv/lightdm /var/service/lightdm
+
+###Enable Lightdm as Display Manager if none enabled
+
+if [ systemctl is-enabled lightdm.service sddm.service gdm.service lxdm.service &> /dev/null ]
+	then
+		tput setaf 5;echo "################################################################"
+		echo "Enabling lightdm as display manager"
+		echo "################################################################"
+		echo;tput sgr0
+		sudo systemctl enable lightdm.service
+fi
 
 tput setaf 7;echo "################################################################"
-echo "You now have a very minimal functional desktop"
+echo "You now have a functional desktop"
 echo "################################################################"
 echo;tput sgr0
 

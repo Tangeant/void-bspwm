@@ -1,12 +1,12 @@
-# Void Linux BSPWM Desktop
+# Arch Linux BSPWM and Openbox Desktops
 
-# Start by installing the latest Void Linux iso
+# Start by installing the Arch Linux
 
-Download at https://alpha.de.repo.voidlinux.org/live/current and burn to usb
+Download at https://www.archlinux.org/download/ and burn to usb
 
 # Vision
 
-This github will not only install the desktop, but it will install all needed software for a new BSPWM install.
+This github will not only install the desktop, but it will install all needed software for a new BSPWM or Openbox install.
 
 We will also make it very easy to have a desktop you can be proud of.
 All icons, themes, cursors, wallpapers, conky's  will be there.
@@ -26,9 +26,6 @@ Learn, have fun and enjoy.
 
 Information (originally from) : https://arcolinux.info
 
-Void Linux: https://voidlinux.org
+Arch Linux: https://archlinux.org
 
 All credits to Nick Petrov & Kevin Yanez aka (INTRCPTR)	for making the configuration this is based off of.
-
-
-

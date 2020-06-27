@@ -22,7 +22,7 @@
 
 
 func_install() {
-	if xbps-query $1 &> /dev/null; then
+	if pacman -Qi $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -36,7 +36,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo xbps-install -vy $1
+    	sudo pacman -S --needed --noconfirm $1
     fi
 }
 
