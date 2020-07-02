@@ -63,7 +63,6 @@ list=(
 rsync
 xorg
 zsh
-antibody
 lightdm
 lightdm-gtk3-greeter
 lightdm-gtk-greeter-settings
@@ -118,7 +117,8 @@ tput setaf 6;echo "#############################################################
 echo "Copying Dotfiles from Config"
 echo "################################################################"
 echo;tput sgr0
-sudo yay -S yadm
+yay -S yadm
+yay -S antibody
 yadm clone https://github.com/Tangeant/dotfiles
 chmod +x "$HOME/.config/yadm/bootstrap"
 yadm bootstrap
